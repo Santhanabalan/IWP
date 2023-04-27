@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Exodus</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://kit.fontawesome.com/d85710b2b5.js" crossorigin="anonymous"></script>
+    <script src="assets/js/register.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <!-- <img src="assets/images/logo.png" alt="Exodus" class="logo"> -->
+                <p class="textlogo"><span>Mobile</span> Portfolio</p>
+                <ul id="sidemenu">
+                  <li><a href="register.html">Register</a></li>
+                  <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+            <div class="header-text">
+                <p>Team Exodus</p>
+                <h1>Kindly Register Below to <br> <span>Explore</span> the specs of various <br> mobiles.</h1>
+                <br>
+                <h6>Already have an account? <a href="login.html">Click Here</a> to Login</h6>
+            </div>
+        </div>
+    </div>
+    <!-- Register -->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Register!</h1>
+                    <p><i class="fa-regular fa-envelope"></i>admin@Exodus.ml</p>
+                    <p><i class="fa-solid fa-mobile"></i>+91 9876543210</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <form action="index.html" name="form" onsubmit="return validateForm()">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="text" name="number" placeholder="Your Mobile Number" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="password" name="pass" placeholder="Enter your Password" required>
+                        <input type="password" name="repass" placeholder="Retype Password" required>
+                        <button type="submit" class="btn btn2" onclick="return validateForm()">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Copyright ©️ Santhanabalan. Made with <i class="fas fa-heart"></i> by Santhanabalan</p>
+        </div>
+    </div>
+</body>
+</html>
