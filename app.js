@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
 
 const { MongoClient } = require('mongodb');
@@ -12,7 +13,9 @@ const dbName = 'IwpProject';
 
 const client = new MongoClient(uri);
 
-// Connect to database
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 client.connect((err) => {
   if (err) {
     console.error(err);
@@ -31,26 +34,28 @@ app.get('/about', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'about.html'));
 });
 
+app.get('/error', (req, res) => {
+  res.sendFile(path.join(__dirname, 'src', 'error.html'));
+});
+
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'login.html'));
 });
 
-// Login endpoint
 app.post('/login', async (req, res) => {
   const { username, password } = req.body;
 
-  // Find user in database
   const db = client.db(dbName);
   const collection = db.collection('users');
   const user = await collection.findOne({ username });
 
-  // Check password
   const passwordMatch = await bcrypt.compare(password, user.password);
 
   if (passwordMatch) {
     res.redirect('/');
   } else {
     res.status(401).json({ message: 'Invalid credentials' });
+    res.redirect('/error');
   }
 });
 
@@ -58,17 +63,14 @@ app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'src', 'register.html'));
 });
 
-// Register endpoint
 app.post('/register', async (req, res) => {
   const { username, password , number, email,repass } = req.body;
 
-  // Hash password
-  if (password00!=repass){
-    console.log("Password are not similar");
+  if (password!=repass){
+    res.redirect('/error');
   }
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // Save user to database
   const db = client.db(dbName);
   const collection = db.collection('users');
   await collection.insertOne({ username, password: hashedPassword, number: number, email:email });
