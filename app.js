@@ -48,13 +48,13 @@ app.post('/login', async (req, res) => {
   const db = client.db(dbName);
   const collection = db.collection('users');
   const user = await collection.findOne({ username });
-
+  if(user!=null){
   const passwordMatch = await bcrypt.compare(password, user.password);
-
-  if (passwordMatch) {
-    res.redirect('/');
-  } else {
-    res.status(401).json({ message: 'Invalid credentials' });
+    if (passwordMatch) {
+      res.redirect('/');
+    }
+  } 
+  else {
     res.redirect('/error');
   }
 });
